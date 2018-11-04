@@ -54,5 +54,19 @@ public class TesteBancoJdbc {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void initAtualizar() {
+		
+		UserPostegresDAO dao = new UserPostegresDAO();
+		try {
+			Userpostegres obj = dao.buscar(6L);
+			obj.setNome("Mome mudado com método atualizar");
+			dao.atualizar(obj);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

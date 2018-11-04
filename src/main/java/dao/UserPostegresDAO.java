@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +25,8 @@ public class UserPostegresDAO {
 		insert.setLong(1, obj.getId());
 		insert.setString(2, obj.getNome());
 		insert.setString(3, obj.getEmail());
-		insert.execute();
 		
+		insert.execute();
 		connection.commit(); //Salva no banco de dados.
 		
 		}catch(Exception e) {
@@ -81,6 +82,27 @@ public class UserPostegresDAO {
 		
 		return retorno;
 
+	}
+	
+	public void atualizar(Userpostegres obj) {
+		try {
+			
+		String sql = "UPDATE userpostegres SET nome = ? WHERE id =" + obj.getId();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, obj.getNome());
+		statement.execute();
+		connection.commit();
+		
+		}catch(Exception x) {
+			
+			try {
+				connection.rollback();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			x.printStackTrace();
+		}
 	}
 	
 }
