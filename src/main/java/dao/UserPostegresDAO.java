@@ -2,6 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import conexaojdbc.SingleConnection;
 import model.Userpostegres;
@@ -36,6 +39,48 @@ public class UserPostegresDAO {
 			}
 			e.printStackTrace();
 		}
+	}
+	
+	public List<Userpostegres> listar() throws Exception{
+		List<Userpostegres> list = new ArrayList<Userpostegres>();
+		String sql = "SELECT * FROM userpostegres";
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet resultado = statement.executeQuery();// recebe uma lista.
+		
+		while(resultado.next()){//Enquanto o resultado existir:
+			
+			Userpostegres obj = new Userpostegres();
+			
+			obj.setId(resultado.getLong("id")); //Vou colocar os nomes das coluna para referênciar no resultado
+			obj.setNome(resultado.getString("nome"));
+			obj.setEmail(resultado.getString("email"));
+			
+			list.add(obj);// Adiciono na Lista.
+		}
+		
+		return list;
+
+	}
+	
+	public Userpostegres buscar(Long id) throws Exception{
+		Userpostegres retorno = new Userpostegres();
+		String sql = "SELECT * FROM userpostegres WHERE id = " + id; 
+//      Será retornado o registro com ID igual ao passado por parâmetro
+		
+
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet resultado = statement.executeQuery();// recebe uma lista.
+		
+		while(resultado.next()){//Apenas um ou nenhum
+			
+			retorno.setId(resultado.getLong("id")); //Vou colocar os nomes das coluna para referênciar no resultado
+		    retorno.setNome(resultado.getString("nome"));
+			retorno.setEmail(resultado.getString("email"));
+
+		}
+		
+		return retorno;
+
 	}
 	
 }

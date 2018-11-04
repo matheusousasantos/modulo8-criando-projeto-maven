@@ -1,5 +1,7 @@
 package pos_java_jdbc.pos_java_jdbc;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import dao.UserPostegresDAO;
@@ -19,6 +21,38 @@ public class TesteBancoJdbc {
 		
 		userPostegresDAO.salvar(userPostegres);
 		
+	}
+	
+	@Test
+	public void initListar() {
+		
+		UserPostegresDAO dao = new UserPostegresDAO();
+		List<Userpostegres> list;
+		
+		try {
+			list = dao.listar();
+			for(Userpostegres x : list) {
+				System.out.println(x);
+				System.out.println("==================================================================");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void initBuscar() {
+		
+		UserPostegresDAO dao = new UserPostegresDAO();
+		
+		try {
+			
+			Userpostegres obj = dao.buscar(6L);
+			System.out.println(obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

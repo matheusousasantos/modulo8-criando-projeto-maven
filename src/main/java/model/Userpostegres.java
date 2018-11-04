@@ -24,7 +24,9 @@ public class Userpostegres {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "Userpostegres [id=" + id + ", nome=" + nome + ", email=" + email + "]";
+	}
 
 }
