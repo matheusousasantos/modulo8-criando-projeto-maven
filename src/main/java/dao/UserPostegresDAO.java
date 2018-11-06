@@ -20,11 +20,10 @@ public class UserPostegresDAO {
 	
 	public void salvar(Userpostegres obj) { // Vai salvar um registro recebendo um obj por parâmetro.
 		try {
-		String sql = "INSERT INTO userpostegres (id, nome, email) VALUES(?,?,?)"; // String que representa o SQL.
+		String sql = "INSERT INTO userpostegres (nome, email) VALUES(?,?)"; // String que representa o SQL.
 		PreparedStatement insert = connection.prepareStatement(sql); //Prepara a instrução que antes é uma String.
-		insert.setLong(1, obj.getId());
-		insert.setString(2, obj.getNome());
-		insert.setString(3, obj.getEmail());
+		insert.setString(1, obj.getNome());
+		insert.setString(2, obj.getEmail());
 		
 		insert.execute();
 		connection.commit(); //Salva no banco de dados.

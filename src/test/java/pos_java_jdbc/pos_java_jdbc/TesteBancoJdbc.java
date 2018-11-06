@@ -15,9 +15,8 @@ public class TesteBancoJdbc {
 		UserPostegresDAO userPostegresDAO = new UserPostegresDAO(); //Criando um dao junto com a conexão
 		Userpostegres userPostegres = new Userpostegres(); //Criando um novo obj
 		
-		userPostegres.setId(6L);
-		userPostegres.setNome("Sandra");
-		userPostegres.setEmail("sandra@gmail.com");
+		userPostegres.setNome("Klebinho");
+		userPostegres.setEmail("klebinho@gmail.com");
 		
 		userPostegresDAO.salvar(userPostegres);
 		
