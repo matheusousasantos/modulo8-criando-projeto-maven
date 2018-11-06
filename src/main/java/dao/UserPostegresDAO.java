@@ -73,7 +73,7 @@ public class UserPostegresDAO {
 		
 		while(resultado.next()){//Apenas um ou nenhum
 			
-			retorno.setId(resultado.getLong("id")); //Vou colocar os nomes das coluna para referênciar no resultado
+			retorno.setId(resultado.getLong("id"));//Vou colocar os nomes das coluna para referênciar no resultado
 		    retorno.setNome(resultado.getString("nome"));
 			retorno.setEmail(resultado.getString("email"));
 
