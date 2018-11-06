@@ -67,5 +67,17 @@ public class TesteBancoJdbc {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void initDeletar() {
+		try {
+			
+			UserPostegresDAO dao = new UserPostegresDAO();
+			dao.deletar(7L);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

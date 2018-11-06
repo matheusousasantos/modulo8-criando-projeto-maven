@@ -102,6 +102,28 @@ public class UserPostegresDAO {
 			}
 			x.printStackTrace();
 		}
+	
+	}
+	
+	public void deletar(Long id)  {
+		try {
+			
+			String sql = "DELETE FROM userpostegres WHERE id =" + id;
+			
+			PreparedStatement pst = connection.prepareStatement(sql);
+			pst.execute();
+			
+			connection.commit();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 	
 }
